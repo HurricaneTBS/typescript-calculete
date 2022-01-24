@@ -5,18 +5,17 @@ import './style.css';
 const appDiv: HTMLElement = document.getElementById('app');
 appDiv.innerHTML = `<h1>TypeScript Starter</h1>`;
 
-const containsDuplicate = (nums: number[]) => {
-  const set = new Set();
-  for(const item of nums){
-    if(set.has(item)){
-      return true;
-    }
+const maxSubArray = (nums) => {
+  // 记录第n项时子数组的和f(n)
+  let pre = 0;
+  // 记录最大子数组的和
+  let max = 0;
+  nums.forEach((item) => {
+    pre = Math.max(pre + item, item);
+    max = Math.max(pre, max);
+  });
 
-    set.add(item);
-  }
-
-  return false;
+  return max;
 };
 
-console.log(containsDuplicate([1,2,3,7,5,6,9,0]))
-
+console.log(maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]));
